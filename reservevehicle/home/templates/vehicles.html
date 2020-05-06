@@ -1,0 +1,27 @@
+{% extends "homebase.html" %}
+
+{% block title %} Vehicles {{ setting.company }} {% endblock  %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }}  {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+<div class="content"><div class="ic">vehicles</div>
+				<div class="container_12">
+					<div class="grid_5">
+						<div class="grid_6 prefix_1">
+							{% for vehicle in vehicles %}
+							<a href="" class="type"><img src="{{vehicle.image.url}}" alt=""><span class="type_caption">{{vehicle.title}}</span></a>
+							{% endfor %}
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+
+
+{% endblock %}

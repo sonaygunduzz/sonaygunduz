@@ -1,15 +1,53 @@
 {% load static %}
+<style>
+ul li a:hover { background: #449d44; }
+    li:hover > ul {
+  display: block;
+  position: absolute;
+        margin-top: -5px;
+}
+
+.main-navigation li ul li { border-top: 0; }
+    ul ul ul {
+  left: 100%;
+  top: 0;
+
+}
+    ul:before,
+ul:after {
+  content: " "; /* 1 */
+  display: table; /* 2 */
+}
+
+ul:after { clear: both; }
+</style>
+
+<div class="main">
 <header>
 				<div class="menu_block ">
 					<div class="container_12">
 						<div class="grid_12">
 							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
 								<ul class="sf-menu">
-									<li class="current"><a href="index.html">Home</a></li>
-									<li><a href="index-1.html">About</a></li>
-									<li><a href="index-2.html">Cars</a></li>
-									<li><a href="index-3.html">Services</a></li>
-									<li><a href="index-4.html">Contacts</a></li>
+									<li class="current"><a href="/">Home</a></li>
+									<li><a href="/about">About Us</a></li>
+									<li><a href="/references">References</a></li>
+                                    {% load mptt_tags %}
+									<li><a href="/services">Services</a>
+										<ul>
+											{% recursetree category %}
+                                            <li><a href="/category/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">{{ node.title }}</a>
+												<ul>
+                                            		{% if not node.is_leaf_node %}
+                                                		<li><a href="/category/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">{{ children }}</a></li>
+                                            		{% endif %}
+                                        		</ul>
+                                            </li>
+                                             {% endrecursetree %}
+                                        </ul>
+                                    </li>
+                                    <li><a href="/contact">Contacts</a></li>
+
 								</ul>
 							</nav>
 							<div class="clear"></div>
@@ -17,14 +55,6 @@
 						<div class="clear"></div>
 					</div>
 				</div>
-				<div class="container_12">
-					<div class="grid_12">
-						<h1>
-							<a href="index.html">
-								<img src="{% static 'images/logo.png' %}" alt="Your Happy Family">
-							</a>
-						</h1>
-					</div>
-				</div>
-				<div class="clear"></div>
+
 			</header>
+

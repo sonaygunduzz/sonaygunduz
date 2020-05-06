@@ -1,0 +1,53 @@
+{% extends "homebase.html" %}
+
+{% block title %} Contact {{ setting.company }} {% endblock  %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }}  {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="content"><div class="ic"> İletişim </div>
+	<div class="row">
+			<div class="container_12">
+				<div class="grid_12">
+					<h3>Contact with Us</h3>
+					<div class="grid_4 prefix_1">
+
+						{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-{{message.tags}}" role="alert">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endif %}
+
+
+						<form action="" method="post">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<input type="submit" value="SEND FORM">
+						</form>
+
+					</div>
+
+				<div class="clear"></div>
+				<div class="grid_8 prefix_1">
+					<div class="section-title">
+						<h3 class="title">Our Contact Info</h3>
+					</div>
+					{{setting.contact|safe}}
+
+				</div>
+				</div>
+				</div>
+
+			</div>
+	</div>
+
+
+
+{% endblock %}

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-{% load static %}
-		<head>
 
+		<head>
+		{% load static %}
 		<meta charset="utf-8">
 		<meta name = "format-detection" content = "telephone=no" />
 
@@ -32,27 +32,10 @@
 	   <script src="{% static 'js/jquery.mobile.customized.min.js' %}"></script>
 		<!--<![endif]-->
 		<script src="{% static 'booking/js/booking.js' %}"></script>
-		<script>
-			$(document).ready(function(){
-				jQuery('#camera_wrap').camera({
-					loader: false,
-					pagination: false ,
-					minHeight: '444',
-					thumbnails: false,
-					height: '28.28125%',
-					caption: true,
-					navigation: true,
-					fx: 'mosaic'
-				});
-				$().UItoTop({ easingType: 'easeOutQuart' });
-			});
-		</script>
-		<!--[if lt IE 8]>
-			<div style=' clear: both; text-align:center; position: relative;'>
-				<a href="http://windows.microsoft.com/en-US/internet-explorer/products/ie/home?ocid=ie6_countdown_bannercode">
-					<img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser." />
-				</a>
-			</div>
+
+
+			<!--[if lt IE 8]>
+
 		<![endif]-->
 		<!--[if lt IE 9]>
 			<script src="{% static 'js/html5shiv.js' %}"></script>
@@ -64,7 +47,6 @@
 	{% block slider %} {% endblock %}
 	{% block content %} {% endblock %}
 	{% include 'footer.html' %}
-	{% block foot %} {% endblock %}
 
 
 <body>
