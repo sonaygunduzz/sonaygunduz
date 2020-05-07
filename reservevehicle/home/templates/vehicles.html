@@ -11,14 +11,19 @@
 {% block content %}
 <div class="content"><div class="ic">vehicles</div>
 				<div class="container_12">
-					<div class="grid_5">
-						<div class="grid_6 prefix_1">
-							{% for vehicle in vehicles %}
-							<a href="" class="type"><img src="{{vehicle.image.url}}" alt=""><span class="type_caption">{{vehicle.title}}</span></a>
-							{% endfor %}
+					<div class="grid_6">
+					{% for vehicle in vehicles %}
+						<div class="grid_6">
+							<a href="/vehicle/{{vehicle.id}}/{{vehicle.slug}}" class="type"><img src="{{vehicle.image.url}}" height="400" width="600" alt="">
+								<span  style="font-size: 20px" > <b>{{vehicle.title}} | Fiyat : {{vehicle.price}}</b> </span>
+							</a>
 						</div>
+						<div class="grid_6 prefix_6 " style="margin-top: -400px">
+							{{vehicle.detail | safe}}
+							<button class="btn btn-large" type="submit" style="margin-left: 200px" > Rezervasyon yap</button>
+						</div>
+					{% endfor %}
 					</div>
-
 				</div>
 			</div>
 

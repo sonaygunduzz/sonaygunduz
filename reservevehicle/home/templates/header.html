@@ -36,12 +36,8 @@ ul:after { clear: both; }
 									<li><a href="/services">Services</a>
 										<ul>
 											{% recursetree category %}
-                                            <li><a href="/category/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">{{ node.title }}</a>
-												<ul>
-                                            		{% if not node.is_leaf_node %}
-                                                		<li><a href="/category/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">{{ children }}</a></li>
-                                            		{% endif %}
-                                        		</ul>
+                                            <li><a href="/categories/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">{{ node.title }}</a>
+
                                             </li>
                                              {% endrecursetree %}
                                         </ul>

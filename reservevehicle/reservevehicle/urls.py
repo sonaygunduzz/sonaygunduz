@@ -20,6 +20,7 @@ from django.urls import path, include
 
 from home import views
 
+
 urlpatterns =[
 
     path('', include('home.urls')),
@@ -31,6 +32,9 @@ urlpatterns =[
     path('admin/', admin.site.urls),
     path('ckeditor/', include('ckeditor_uploader.urls')),
     path('category/<int:id>/<slug:slug>/', views.vehicles, name='vehicles'),
+    path('categories/<int:id>/<slug:slug>/', views.category_vehicles, name='category_vehicles'),
+    path('vehicle/<int:id>/<slug:slug>/', views.vehicle_detail, name='vehicle_detail'),
+
 ]
 if settings.DEBUG: # new
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
