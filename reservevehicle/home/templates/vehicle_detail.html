@@ -9,8 +9,10 @@
 {% endblock %}
 
 {% block content %}
-<<div class="content"><div class="ic">Araç Detayı</div>
-				<div class="container_12">
+
+<div class="content">
+	<div class="ic">Araç Detayı</div>
+				<div class="container_12" style="margin-bottom: 250px">
 					<div class="grid_12">
 						<h3>{{vehicles.title}} | Fiyat : {{vehicles.price}} </h3>
 					</div>
@@ -23,7 +25,77 @@
 						<button class="btn btn-large" type="submit" style="margin-left: 525px" > Rezervasyon yap</button>
 					</div>
 
+					<div class="grid_12 prefix_4">
+
+						<div class="row">
+							<div class="col-md-6">
+								<div class="product-reviews">
+									{% for rs in comments %}
+									<div class="single-review">
+										<div> <a href="#"><i class="fa fa-user-o"></i><b>{{rs.user.first_name}}</b></a> </div>
+										<div><a href="#"><i class="fa fa-clock-o"></i>{{rs.created_at}}</a></div>
+										<div class="review-rating pull-right">
+											<i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif%}"></i>
+											<i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif%}"></i>
+											<i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif%}"></i>
+											<i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif%}"></i>
+											<i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif%}"></i>
+										</div>
+									</div>
+									<div class="review-body"><b>{{rs.subject}}</b>
+										<p>{{ rs.comment }}</p>
+									</div>
+									{% endfor %}
+								</div>
+							</div>
+						</div>
+
+					<div class="grid_6">
+						<h4 class="text-uppercase"> Your Comment </h4>
+						{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-warning{{message.tags}}" role="alert">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endif %}
+
+						<form id="bookingForm" action="/vehicle/addcomment/{{ vehicle.id }}" method="post">
+							{% csrf_token %}
+								<div class="fl1">
+
+									<div class="tmInput">
+										<input type="text" name="subject" id="id_subject" placeholder="subject">
+									</div>
+									<div class="tmTextarea">
+										<textarea name="comment" id="id_comment" placeholder="your review"></textarea>
+									</div>
+									<div class="form-group">
+										<div class="input-rating">
+											<strong class="text-uppercases"> Your Rating: </strong>
+											<div class="stars">
+												<input type="radio" id="star5" name="rate" value="5"/><label for="star5>"></label>
+												<input type="radio" id="star4" name="rate" value="5"/><label for="star4>"></label>
+												<input type="radio" id="star3" name="rate" value="5"/><label for="star3>"></label>
+												<input type="radio" id="star2" name="rate" value="5"/><label for="star2>"></label>
+												<input type="radio" id="star1" name="rate" value="5"/><label for="star1>"></label>
+											</div>
+										</div>
+									</div>
+									{% if user.id is not None %}
+										<button class="primary-btn">Send Comment </button>
+									{% else %}
+										Yorum eklemek için <a href="/login">login</a>olunuz!
+									{% endif %}
+								</div>
+							</form>
+					</div>
 				</div>
+
 </div>
+</div>
+
+
+
 
 {% endblock %}

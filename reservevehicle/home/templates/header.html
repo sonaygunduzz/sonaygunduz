@@ -1,4 +1,5 @@
 {% load static %}
+
 <style>
 ul li a:hover { background: #449d44; }
     li:hover > ul {
@@ -22,6 +23,24 @@ ul:after {
 ul:after { clear: both; }
 </style>
 
+<script>
+	/*
+	$(function() {
+    	$("#q").autocomplete({
+      		source: "/search_auto/",
+      		select: function (event, ui) { //item selected
+     		AutoCompleteSelectHandler(event, ui)
+      },
+      minLength: 2,
+    });
+  });
+
+  function AutoCompleteSelectHandler(event, ui)
+  {
+    var selectedObj = ui.item;
+  } */
+
+</script>
 <div class="main">
 <header>
 				<div class="menu_block ">
@@ -36,18 +55,45 @@ ul:after { clear: both; }
 									<li><a href="/services">Services</a>
 										<ul>
 											{% recursetree category %}
-                                            <li><a href="/categories/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">{{ node.title }}</a>
-
+                                            <li><a href="/categories/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">
+												{{ node.title }}</a>
                                             </li>
                                              {% endrecursetree %}
                                         </ul>
                                     </li>
                                     <li><a href="/contact">Contacts</a></li>
 
+								<li>
+									<div class="header-search">
+										<form action="/search/" method="post">
+											{% csrf_token %}
+											<input name="q" id="q" class="input search-input" type="text" placeholder="Enter your keyword">
+											<button class="search-btn"><i class="fa fa-search"></i> </button>
+										</form>
+									</div>
+								</li>
 								</ul>
 							</nav>
-							<div class="clear"></div>
+
 						</div>
+					<!-- <div class="pull-right">
+							<ul class="header-btns">
+								<li class="header-account dropdown default-dropdown">
+									<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
+										<div class="header-btns-icon">
+											<i class="fa fa-user-o"></i>
+										</div>
+										<strong class="text-uppercases">My Account <i class="fa fa-caret-down"></i> </strong>
+									</div>
+									<a href="#" class="text-uppercases">Login</a> / <a href="#" class="text-uppercases">Join</a>
+									<ul class="custom-menu">
+										<li><a href="#"><i class="fa fa-user-o"></i> My Account</a> </li>
+
+									</ul>
+								</li>
+							</ul>
+						</div> -->
+
 						<div class="clear"></div>
 					</div>
 				</div>

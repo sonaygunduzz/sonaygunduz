@@ -1,0 +1,42 @@
+{% extends "homebase.html" %}
+
+{% block title %} Vehicle Search Results {% endblock  %}
+{% block keywords %} {{ categorydata.keywords }} {% endblock %}
+{% block description %} {{ categorydata.description }}  {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+	<div class="ic">Search</div>
+				<div class="container_12">
+					<ul class="broadcrumb">
+						<li class="active">{{categorydata.title}}</li>
+					</ul>
+				</div>
+	<div class="container">
+		<div class="row">
+			<table cellpadding="5" width="1200">
+				<tr>
+					<th>Image</th>
+					<th>Vehicle</th>
+					<th>Category</th>
+					<th>Price</th>
+				</tr>
+				{% for rs in vehicles %}
+				<tr>
+				    <td><a href="/vehicle/{{rs.id}}/{{rs.slug}}"><img src="{{rs.image.url}}" style="" alt=""></a> </td>
+					<td><h4 class="vehicle-name"><a href="/vehicle/{{rs.id}}/{{rs.slug}}">{{rs.title}}</a></h4> </td>
+					<td><a href="/category/{{rs.category.id}}/{{rs.category.slug}}">{{rs.category}}</a> </td>
+					<td><h4> ${{rs.price}} </h4></td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
