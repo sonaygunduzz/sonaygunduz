@@ -20,7 +20,7 @@
 				<div class="section-title">
 					<h3 class="title"> User Reservation List </h3>
 				</div>
-				<table style="border: 1px solid black">
+				<table style="border: 2px solid black">
 
 						<tr>
 							<th class="text-left" style="padding: 20px">Photo</th>
@@ -38,8 +38,8 @@
 							<td class="text-left" style="padding: 20px"><a href="/vehicle/{{item.vehicle_id}}/{{item.vehicle.slug}}">
 								<img src="{{item.vehicle.image.url}}" height="100"></a>
 							</td>
-							<td class="text-left" style="padding: 20px">{{item.vehicle.title}}</td>
-							<td class="text-left" style="padding: 20px">{{item.price}}</td>
+							<td class="text-left" style="padding: 20px">{{ item.vehicle.title }}</td>
+							<td class="text-left" style="padding: 20px">{{ item.price }}</td>
 							<td class="text-left" style="padding: 20px">{{item.quantity}}</td>
 							<td class="text-left" style="padding: 20px">{{item.amount}}</td>
 							<td class="text-left" style="padding: 20px">{{item.status}}</td>
