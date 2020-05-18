@@ -1,0 +1,63 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ profile.user_name }} Profile Page   {% endblock  %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }}  {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="content" style="background: white; padding-bottom: 1000px">
+	<div class="ic"> User Profile </div>
+		<div class="row">
+			<div class="grid_3">
+				{% include "user_panel.html" %}
+			</div>
+			<div class="grid_9">
+				<div class="section-title">
+					<h3 class="title"> User Information </h3>
+				</div>
+				<table style="border: 1px solid black">
+					<thead>
+						<tr>
+							<a href="/user/update" class="btn-large">Update Profile</a>
+							<a href="/user/password" class="btn-large">Change Password </a>
+
+						</tr>
+						<tr>
+							<th class="text-left"></th>
+							<td> <img src="{{ profile.image.url }}" alt="" height="100"> </td>
+						</tr>
+						<tr>
+			 				<th class="text-left" style="padding: 20px">Name Surname</th>
+							<th class="text-left" style="padding: 20px">Email</th>
+							<th class="text-left" style="padding: 20px">Phone</th>
+							<th class="text-left" style="padding: 20px">Address</th>
+							<th class="text-left" style="padding: 20px">City</th>
+							<th class="text-left" style="padding: 20px">Country</th>
+						</tr>
+						<tr>
+							<td style="text-align: center" class="text-left">{{profile.user_name}}</td>
+							<td style="text-align: center" class="text-left">{{profile.user.email}}</td>
+							<td style="text-align: center" class="text-left">{{profile.phone}}</td>
+							<td style="text-align: center" class="text-left">{{profile.address}}</td>
+							<td style="text-align: center" class="text-left">{{profile.city}}</td>
+							<td style="text-align: center" class="text-left">{{profile.country}}</td>
+						</tr>
+
+					</thead>
+				</table>
+
+			</div>
+		</div>
+</div>
+
+
+
+
+
+
+{% endblock %}

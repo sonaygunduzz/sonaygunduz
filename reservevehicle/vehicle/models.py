@@ -24,7 +24,7 @@ class Category(MPTTModel):
     description = models.CharField(blank=True,max_length=100)
     image = models.ImageField(blank=True, upload_to='images/')
     status = models.CharField(max_length=10, choices=STATUS)
-    slug = models.SlugField()
+    slug = models.SlugField(null  =False, unique=True)
     parent = TreeForeignKey('self', blank=True, null=True, related_name='children', on_delete=models.CASCADE)
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -76,6 +76,10 @@ class Vehicle(models.Model):
         def cating_tag(self):
             return mark_safe(((Category.status)))
 
+        def get_absolute_url(self):
+            return reverse('vehicle_detail', kwargs={'slug': self.slug})
+
+
 class Images(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     title = models.CharField(max_length=50, blank= True)
@@ -88,27 +92,28 @@ class Images(models.Model):
 
     image_tag.short_description = 'Image'
 
+
+
 class Comment(models.Model):
-    STATUS ={
+    STATUS = (
         ('New', 'Yeni'),
         ('True', 'Evet'),
         ('False', 'Hayır'),
-    }
-
+    )
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    subject = models.CharField(max_length=50, blank=True)
-    comment = models.TextField(max_length=200, blank=True)
-    rate = models.IntegerField(blank=True)
-    status = models.CharField(max_length=10, choices=STATUS, default='New')
+    subject = models.CharField(max_length=100)
+    comment = models.TextField(max_length=250)
+    rate = models.IntegerField()
+    status = models.CharField(max_length=10, choices=STATUS, default="New")
     ip = models.CharField(blank=True, max_length=20)
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
 
     def __str__(self):
         return self.subject
 
 class CommentForm(ModelForm):
-        class Meta:
-            model = Comment
-            fields = ['subject', 'comment', 'rate']
+    class Meta:
+        model = Comment
+        fields = ['subject', 'comment', 'rate']

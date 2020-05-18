@@ -31,6 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'reservation.apps.ReservationConfig',
+    'user.apps.UserConfig',
     'vehicle.apps.VehicleConfig',
     'home.apps.HomeConfig',
     'django.contrib.admin',

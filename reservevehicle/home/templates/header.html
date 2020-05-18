@@ -43,60 +43,66 @@ ul:after { clear: both; }
 </script>
 <div class="main">
 <header>
-				<div class="menu_block ">
-					<div class="container_12">
-						<div class="grid_12">
-							<nav class="horizontal-nav full-width horizontalNav-notprocessed">
-								<ul class="sf-menu">
-									<li class="current"><a href="/">Home</a></li>
-									<li><a href="/about">About Us</a></li>
-									<li><a href="/references">References</a></li>
-                                    {% load mptt_tags %}
-									<li><a href="/services">Services</a>
-										<ul>
-											{% recursetree category %}
-                                            <li><a href="/categories/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">
-												{{ node.title }}</a>
-                                            </li>
-                                             {% endrecursetree %}
-                                        </ul>
-                                    </li>
-                                    <li><a href="/contact">Contacts</a></li>
-
-								<li>
-									<div class="header-search">
-										<form action="/search/" method="post">
-											{% csrf_token %}
-											<input name="q" id="q" class="input search-input" type="text" placeholder="Enter your keyword">
-											<button class="search-btn"><i class="fa fa-search"></i> </button>
-										</form>
-									</div>
+	<div class="menu_block">
+		<div class="container_12" >
+			<div class="grid_12">
+				<nav class="horizontal-nav full-width horizontalNav-notprocessed">
+					<ul class="sf-menu">
+						<li><a href="/">Home</a></li>
+						<li><a href="/about">About Us</a></li>
+						<li><a href="/references">References</a></li>
+						{% load mptt_tags %}
+						<li> <a href="/services">Services</a>
+							<ul>
+								{% recursetree category %}
+								<li><a href="/categories/{{ node.id }}/{{ node.slug }}" style="font-weight: bold">
+									{{ node.title }}</a>
 								</li>
-								</ul>
-							</nav>
-
-						</div>
-					<!-- <div class="pull-right">
-							<ul class="header-btns">
-								<li class="header-account dropdown default-dropdown">
-									<div class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="true">
-										<div class="header-btns-icon">
-											<i class="fa fa-user-o"></i>
-										</div>
-										<strong class="text-uppercases">My Account <i class="fa fa-caret-down"></i> </strong>
-									</div>
-									<a href="#" class="text-uppercases">Login</a> / <a href="#" class="text-uppercases">Join</a>
-									<ul class="custom-menu">
-										<li><a href="#"><i class="fa fa-user-o"></i> My Account</a> </li>
-
-									</ul>
-								</li>
+								{% endrecursetree %}
 							</ul>
-						</div> -->
+						</li>
+						<li><a href="/contact">Contacts</a></li>
+						<li>
+							<div class="header-search">
+								<form action="/search/" method="post">
+									{% csrf_token %}
+							 		<input name="q" id="q" class="input search-input" type="text" placeholder="Enter your keyword">
+									<button class="search-btn"><i class="fa fa-search"></i> </button>
+								</form>
+							</div>
+						</li>
+						<li>
+							{% if user.id is not None %}
+								<a href="/user" ><i class="fa fa-user" style="margin-right: 5px"></i>{{user.first_name}} {{user.last_name}}</a>
+							{% else %}
+								<a href="/login" class="text-uppercases">Login</a> / <a href="/signup/" class="text-uppercases">Sign Up</a>
+							{% endif %}
+							<ul class="custom-menu">
+								<li><a href="/user"><i class="fa fa-user"></i> My Account</a> </li>
+								<li><a href="/user/reservations"><i class="fa fa-phone"></i> My Reservations </a> </li>
+								<li>
+									<a href="/shopcart">
+									<i class="fa fa-shopping-cart"></i>
+									<span class="">{{request.session.cart_items}}</span>
+									<strong class="text"> My Cart</strong>
+									</a>
+								</li>
+								<li><a href="/user/comments"><i class="fa fa-comment"></i> My comments</a> </li>
+								<li><a href="/logout/"><i class="fa fa-unlock-alt"></i> Logout</a> </li>
+							</ul>
+						</li>
 
-						<div class="clear"></div>
-					</div>
-				</div>
+					</ul>
+				</nav>
 
-			</header>
 
+			</div>
+
+
+		</div>
+
+	</div>
+
+</header>
+
+</div>

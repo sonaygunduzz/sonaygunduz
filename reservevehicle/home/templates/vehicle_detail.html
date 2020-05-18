@@ -8,9 +8,9 @@
 <link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
 {% endblock %}
 
-{% block content %}
+{% block content %}bu neresi jbökbjhkb
 
-<div class="content">
+<div class="content" style="background: white; padding-bottom: 1000px">
 	<div class="ic">Araç Detayı</div>
 				<div class="container_12" style="margin-bottom: 250px">
 					<div class="grid_12">
@@ -22,80 +22,77 @@
 							<div class="grid_4" style="margin-bottom: 100px"><img src="{{image.image.url}}" alt="" style="height: 300px"></div>
 						{% endfor%}
 						{{vehicles.detail | safe}}
-						<button class="btn btn-large" type="submit" style="margin-left: 525px" > Rezervasyon yap</button>
+						<form action="/reservation/addtocart/{{ vehicles.id }}" method="post">
+							{% csrf_token %}
+							<div class="qty-input">
+								<span class="text-uppercase"> Kişi Sayısı: </span>
+								<input name="quantity" class="input" type="number" min="0" max="{{vehicle.amount}}" value="1">
+							</div>
+							<button type="submit" class="btn-small">Rezervasyon Yap</button>
+						</form>
 					</div>
+					<div class="">
 
+					</div>
 					<div class="grid_12 prefix_4">
 
 						<div class="row">
-							<div class="col-md-6">
-								<div class="product-reviews">
-									{% for rs in comments %}
-									<div class="single-review">
-										<div> <a href="#"><i class="fa fa-user-o"></i><b>{{rs.user.first_name}}</b></a> </div>
-										<div><a href="#"><i class="fa fa-clock-o"></i>{{rs.created_at}}</a></div>
-										<div class="review-rating pull-right">
-											<i class="fa fa-star{% if rs.rate < 1 %}-o empty{% endif%}"></i>
-											<i class="fa fa-star{% if rs.rate < 2 %}-o empty{% endif%}"></i>
-											<i class="fa fa-star{% if rs.rate < 3 %}-o empty{% endif%}"></i>
-											<i class="fa fa-star{% if rs.rate < 4 %}-o empty{% endif%}"></i>
-											<i class="fa fa-star{% if rs.rate < 5 %}-o empty{% endif%}"></i>
-										</div>
-									</div>
-									<div class="review-body"><b>{{rs.subject}}</b>
-										<p>{{ rs.comment }}</p>
-									</div>
-									{% endfor %}
-								</div>
+
+					{% for rs in comments %}
+					<div style="border: 1px solid red; width: 250px; margin-bottom: 10px;">
+						<div> <a href="#"><i class="fa fa-user-o"></i><b>User: {{rs.user.first_name}} {{rs.user.last_name}}</b></a> </div>
+						<div class="review-rating pull-right">
+								{{rs.rate}} <i class="fa-star fa"></i>
+						</div>
+						<div class="review-body"><b>{{rs.subject}} </b>
+						<p>{{ rs.comment }}</p>
+						</div>
+						<i class="fa fa-clock-o"></i>{{rs.create_at}}
+					</div>
+					{% endfor %}
+		</div>
+
+	<div class="grid_6">
+		<h4 class="text-uppercase"> Your Comment </h4>
+		{% if messages %}
+			{% for message in messages %}
+				<div class="alert alert-warning{{message.tags}}" role="alert">
+					{{ message }}
+				</div>
+			{% endfor %}
+		{% endif %}
+
+		<form id="bookingForm" action="/vehicle/addcomment/{{ vehicles.id }}" method="post">
+			{% csrf_token %}
+				<div class="fl1">
+					<div class="tmInput">
+						<input type="text" name="subject" id="id_subject" placeholder="subject">
+					</div>
+					<div class="tmTextarea">
+						<textarea name="comment" id="id_comment" placeholder="your review"></textarea>
+					</div>
+					<div class="form-group">
+						<div class="input-rating">
+							<strong> Rating: </strong>
+							<div class="stars" style="display: inline-block">
+								<input type="radio" id="star5" name="rate" value="5"/>
+								<input type="radio" id="star4" name="rate" value="4"/>
+								<input type="radio" id="star3" name="rate" value="3"/>
+								<input type="radio" id="star2" name="rate" value="2"/>
+								<input type="radio" id="star1" name="rate" value="1"/>
 							</div>
 						</div>
-
-					<div class="grid_6">
-						<h4 class="text-uppercase"> Your Comment </h4>
-						{% if messages %}
-							{% for message in messages %}
-								<div class="alert alert-warning{{message.tags}}" role="alert">
-									{{ message }}
-								</div>
-							{% endfor %}
-						{% endif %}
-
-						<form id="bookingForm" action="/vehicle/addcomment/{{ vehicle.id }}" method="post">
-							{% csrf_token %}
-								<div class="fl1">
-
-									<div class="tmInput">
-										<input type="text" name="subject" id="id_subject" placeholder="subject">
-									</div>
-									<div class="tmTextarea">
-										<textarea name="comment" id="id_comment" placeholder="your review"></textarea>
-									</div>
-									<div class="form-group">
-										<div class="input-rating">
-											<strong class="text-uppercases"> Your Rating: </strong>
-											<div class="stars">
-												<input type="radio" id="star5" name="rate" value="5"/><label for="star5>"></label>
-												<input type="radio" id="star4" name="rate" value="5"/><label for="star4>"></label>
-												<input type="radio" id="star3" name="rate" value="5"/><label for="star3>"></label>
-												<input type="radio" id="star2" name="rate" value="5"/><label for="star2>"></label>
-												<input type="radio" id="star1" name="rate" value="5"/><label for="star1>"></label>
-											</div>
-										</div>
-									</div>
-									{% if user.id is not None %}
-										<button class="primary-btn">Send Comment </button>
-									{% else %}
-										Yorum eklemek için <a href="/login">login</a>olunuz!
-									{% endif %}
-								</div>
-							</form>
 					</div>
+					{% if user.id is not None %}
+						<button class="primary-btn">Send Comment </button>
+					{% else %}
+						Yorum eklemek için <a href="/login">login</a>olunuz!
+					{% endif %}
 				</div>
-
+			</form>
+	</div>
 </div>
+				</div>
 </div>
-
-
-
 
 {% endblock %}

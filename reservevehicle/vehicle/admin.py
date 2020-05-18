@@ -14,6 +14,10 @@ from vehicle.models import Images
 from vehicle.models import Comment
 
 
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ['subject', 'comment', 'vehicle', 'user', 'status']
+    list_filter = ['status']
+
 class VehicleImageInline(admin.TabularInline):
     model = Images
     extra = 5
@@ -29,6 +33,7 @@ class VehicleAdmin(admin.ModelAdmin):
     readonly_fields = ('image_tag',)
     list_filter = ['status', 'category']
     inlines = [VehicleImageInline]
+    prepopulated_fields = {'slug': ('title',)}
 
 
 class ImagesAdmin(admin.ModelAdmin):
@@ -71,9 +76,6 @@ class CategoryAdmin2(DraggableMPTTAdmin):
         return instance.products_cumulative_count
     related_products_cumulative_count.short_description = 'Related products (in tree)'
 
-class CommentAdmin(admin.ModelAdmin):
-    list_display = ['subject', 'comment', 'vehicle', 'user', 'status']
-    list_filter = ['status']
 
 admin.site.register(Category, CategoryAdmin2)
 admin.site.register(Vehicle, VehicleAdmin)

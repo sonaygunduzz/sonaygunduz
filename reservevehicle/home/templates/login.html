@@ -1,0 +1,51 @@
+{% extends "homebase.html" %}
+
+{% block title %} Sign Up {{ setting.company }} {% endblock  %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }}  {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="content"><div class="ic"> Sign Up Page </div>
+	<div class="row">
+			<div class="container_12">
+				<div class="grid_12">
+					<h3>Login Now </h3>
+					<div class="grid_4 prefix_1">
+
+						{% if messages %}
+							{% for message in messages %}
+								<div class="alert alert-{{message.tags}}" role="alert">
+									{{ message }}
+								</div>
+							{% endfor %}
+						{% endif %}
+
+
+						<form action="" method="post">
+							{% csrf_token %}
+							<div class="form-group">
+								<input class="input" type="text" name="username" placeholder="User Name">
+							</div>
+							<div class="form-group">
+								<input class="input" type="password" name="password" placeholder="Password">
+							</div>
+							<input type="submit" value="Signup">
+						</form>
+
+					</div>
+
+
+				</div>
+				</div>
+
+			</div>
+	</div>
+
+
+
+{% endblock %}

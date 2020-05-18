@@ -1,0 +1,62 @@
+{% extends "homebase.html" %}
+
+{% block title %} {{ profile.user_name }}  Reservations Detail  {% endblock  %}
+{% block keywords %} {{ setting.keywords }} {% endblock %}
+{% block description %} {{ setting.description }}  {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="content" style="background: white; padding-bottom: 1000px">
+	<div class="ic"> User Reservations Details </div>
+		<div class="grid_12 prefix_1">
+			<div class="grid_3">
+				{% include "user_panel.html" %}
+			</div>
+			<div class="grid_9" style="margin-left: 170px; margin-top: -340px">
+				<div class="section-title">
+					<h3 class="title"> User Reservation List </h3>
+				</div>
+				<table style="border: 1px solid black">
+
+						<tr>
+							<th class="text-left" style="padding: 20px">Photo</th>
+							<th class="text-left" style="padding: 20px">Vehicle Name</th>
+							<th class="text-left"style="padding: 20px" >Price</th>
+							<th class="text-left" style="padding: 20px">Quantity</th>
+							<th class="text-left" style="padding: 20px">Amount</th>
+							<th class="text-left" style="padding: 20px">Status</th>
+							<th class="text-left" style="padding: 20px">Date</th>
+
+						</tr>
+					{% for item in reservationitems %}
+
+						<tr>
+							<td class="text-left" style="padding: 20px"><a href="/vehicle/{{item.vehicle_id}}/{{item.vehicle.slug}}">
+								<img src="{{item.vehicle.image.url}}" height="100"></a>
+							</td>
+							<td class="text-left" style="padding: 20px">{{item.vehicle.title}}</td>
+							<td class="text-left" style="padding: 20px">{{item.price}}</td>
+							<td class="text-left" style="padding: 20px">{{item.quantity}}</td>
+							<td class="text-left" style="padding: 20px">{{item.amount}}</td>
+							<td class="text-left" style="padding: 20px">{{item.status}}</td>
+							<td class="text-left" style="padding: 20px">{{item.created_at}}</td>
+
+						</tr>
+					{% endfor %}
+
+				</table>
+
+			</div>
+		</div>
+</div>
+
+
+
+
+
+
+{% endblock %}
