@@ -19,6 +19,8 @@ from reservation.models import ReservationVehicle
 from vehicle.models import Comment
 
 
+
+
 def index(request):
     category = Category.objects.all()
     current_user = request.user
@@ -113,3 +115,5 @@ def deletecomment(request, id):
     Comment.objects.filter(id=id, user_id=current_user.id).delete()
     messages.success(request, 'Comment deleted')
     return HttpResponseRedirect('/user/comments')
+
+

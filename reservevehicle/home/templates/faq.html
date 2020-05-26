@@ -1,0 +1,33 @@
+{% extends "homebase.html" %}
+
+{% block title %} Frequently Asked Questions {% endblock  %}
+{% block keywords %} {% endblock %}
+{% block description %} {% endblock %}
+
+{% block head %}
+<link rel ='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' />
+{% endblock %}
+
+{% block content %}
+
+<div class="content">
+	<div class="container" style="background: white; padding-bottom: 500px">
+		<div class="row">
+
+			<table cellpadding="5" width="1200">
+				{% for rs in faq %}
+					<tr>
+						<th> {{rs.question}} </th>
+					</tr>
+
+					<tr>
+						 <td> {{rs.answer}} </td>
+					</tr>
+
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

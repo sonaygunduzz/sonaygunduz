@@ -1,8 +1,8 @@
 {% load static %}
 <div class="content"><div class="ic"></div>
-				<div class="container_12">
+				<div class="container_12" style="background: white; padding-bottom: 200px; width: 1440px  ">
 					<div class="grid_5">
-						<h3>Booking Form</h3>
+						<h3>Searching Form</h3>
 						<form id="bookingForm">
 							<div class="fl1">
 								<div class="tmInput">
@@ -21,10 +21,7 @@
 								</div>
 							</div>
 							<div class="clear"></div>
-							<strong>Time</strong>
-							<div class="tmInput">
-								<input name="Time" placeHolder="" type="text" data-constraints="@NotEmpty @Required">
-							</div>
+
 							<div class="clear"></div>
 							<strong>Date</strong>
 							<label class="tmDatepicker">
@@ -32,29 +29,30 @@
 							</label>
 							<div class="clear"></div>
 
-								<div class="tmRadio" >
-								<p>Comfort</p>
-									<input name="Comfort" type="radio" id="tmRadio0" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' checked/>
-									<span>Cheap</span>
-									<input name="Comfort" type="radio" id="tmRadio1" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' />
-									<span>Standart</span>
-									<input name="Comfort" type="radio" id="tmRadio2" data-constraints='@RadioGroupChecked(name="Comfort", groups=[RadioGroup])' />
-									<span>Lux</span>
+								<div class="input-rating" >
+									<p>Comfort:</p>
+										<input name="Economy" type="radio" id="tmRadio0" data-constraints='@RadioGroupChecked(name="Economy", groups=[RadioGroup])' />
+										<span>Economy </span>
+
+										<input name="Standart" type="radio" id="tmRadio1" data-constraints='@RadioGroupChecked(name="Standart", groups=[RadioGroup])' />
+										<span>Standart</span>
+
+										<input name="Lux" type="radio" id="tmradio2" data-constraints='@radiogroupchecked(name="Lux", groups=[radiogroup])'  />
+										<span>Lux</span>
 								</div>
 
-							<div class="clear"></div>
+								<div class="clear"></div>
 							<div class="fl1 fl2">
-								<em>Adults</em>
-								<select name="Adults" class="tmSelect auto" data-class="tmSelect tmSelect2" data-constraints="">
-									<option>1</option>
-									<option>1</option>
-									<option>2</option>
-									<option>3</option>
-								</select>
-								<div class="clear height1"></div>
+								<em>adults</em>
+								<select name="adults" class="tmselect auto" data-class="tmselect tmselect2" data-constraints="">
+										<option>1</option>
+										<option>1</option>
+										<option>2</option>
+										<option>3</option>
+								</select><div class="clear"></div>
 							</div>
 							<div class="fl1 fl2">
-								<em>Children</em>
+								<em>children</em>
 								<select name="Children" class="tmSelect auto" data-class="tmSelect tmSelect2" data-constraints="">
 									<option>0</option>
 									<option>0</option>
@@ -62,18 +60,16 @@
 									<option>2</option>
 								</select>
 							</div>
+
 							<div class="clear"></div>
-							<div class="tmTextarea">
-								<textarea name="Message" placeHolder="Message" data-constraints='@NotEmpty @Required @Length(min=20,max=999999)'></textarea>
-							</div>
-							<a href="#" class="btn" data-type="submit">Submit</a>
+							<a href="/user_search" class="btn" data-type="submit">Search</a>
 						</form>
 					</div>
 					<div class="grid_6 prefix_1">
 						{% for rs in vehiclelist %}
-							<a href="/vehicle/{{rs.id}}/{{rs.slug}}" class="type"><img src="{{rs.image.url}}" alt=""><span class="type_caption">{{rs.category}}</span></a>
+							<a href="/vehicle/{{rs.id}}/{{rs.slug}}" class="type"><img src="{{rs.image.url}}" alt="" style="height: 480px"><span class="type_caption">{{rs.category}}</span></a>
 						{% endfor %}
 					</div>
 					<div class="clear"></div>
 				</div>
-			</div>
+	</div>

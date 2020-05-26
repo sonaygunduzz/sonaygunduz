@@ -26,6 +26,8 @@ from reservation.models import ShopCart
 
 from vehicle.models import Comment
 
+from home.models import FAQ
+
 
 def index(request):
     current_user = request.user
@@ -198,3 +200,13 @@ def signup_view(request):
                'form': form,
             }
     return render(request, 'signup.html', context)
+
+def faq(request):
+    category = Category.objects.all()
+    faq = FAQ.objects.all().order_by('reservationnumber')
+    context = {
+        'category': category,
+        'faq': faq,
+
+    }
+    return render(request, 'faq.html', context)

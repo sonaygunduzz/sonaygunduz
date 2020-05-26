@@ -10,5 +10,4 @@ urlpatterns = [
     path('reservationdetail/<int:id>', views.reservationdetail, name='reservationdetail'),
     path('comments/', views.comments, name='comments'),
     path('deletecomment/<int:id>', views.deletecomment, name='deletecomment'),
-
-]
+   ]

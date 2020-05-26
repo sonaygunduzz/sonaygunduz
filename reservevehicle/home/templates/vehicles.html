@@ -9,19 +9,19 @@
 {% endblock %}
 
 {% block content %}
-<div class="content" style="background: white; padding-bottom: 1600px"><div class="ic">vehicles</div>
+<div class="content" style="background: white; padding-bottom: 2000px"><div class="ic">vehicles</div>
 				<div class="container_12">
 					<div class="grid_6">
 					{% for vehicle in vehicles %}
 						<div class="grid_6">
 							<a href="/vehicle/{{vehicle.id}}/{{vehicle.slug}}" class="type"><img src="{{vehicle.image.url}}" height="400" width="600" alt="">
-							 	<span  style="font-size: 20px" > <b>{{vehicle.title}} | Fiyat : {{vehicle.price}}</b> </span>
+							 	<span  style="font-size: 20px"> <b>{{vehicle.title}} </b> </span>
 							</a>
 						</div>
-						<div class="grid_6 prefix_6 " style="margin-top: -400px">
-							{{vehicle.detail | safe}}
-							<button class="btn btn-large" type="submit" style="margin-left: 200px" > Rezervasyon yap</button>
+						<div class="grid_4" style="margin-left: 800px; margin-top: -350px">
+							<span  style="font-size: 20px"> <b> {{vehicle.detail }}| Fiyat : {{vehicle.price}} </b> </span>
 						</div>
+
 					{% endfor %}
 					</div>
 				</div>
