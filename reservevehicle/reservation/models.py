@@ -44,6 +44,9 @@ class Reservation(models.Model):
     city = models.CharField(blank=True, max_length=20)
     country = models.CharField(blank=True, max_length=20)
     total = models.FloatField()
+    date = models.DateTimeField()
+    kalkisyeri = models.CharField(max_length=255, blank=True, verbose_name="Kalkış Yeri")
+    varisyeri = models.CharField(max_length=255, blank=True, verbose_name="Varış Yeri")
     status = models.CharField(max_length=18, choices=STATUS, default='New')
     ip = models.CharField(blank=True, max_length=20)
     adminnote = models.CharField(blank=True, max_length=100)
@@ -56,7 +59,7 @@ class Reservation(models.Model):
 class ReservationForm(ModelForm):
     class Meta:
         model = Reservation
-        fields = ['first_name', 'last_name', 'address', 'phone', 'city', 'country']
+        fields = ['first_name', 'last_name', 'address', 'phone', 'city', 'country', 'date', 'kalkisyeri', 'varisyeri']
 
 class ReservationVehicle(models.Model):
     STATUS = (
@@ -70,6 +73,9 @@ class ReservationVehicle(models.Model):
     quantity = models.IntegerField()
     price = models.FloatField()
     amount = models.FloatField()
+    date = models.CharField(max_length=50, default=1)
+    kalkisyeri = models.CharField(max_length=255, blank=True, verbose_name="Kalkış Yeri")
+    varisyeri = models.CharField(max_length=255, blank=True, verbose_name="Varış Yeri")
     status = models.CharField(max_length=10, choices=STATUS, default='New')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)

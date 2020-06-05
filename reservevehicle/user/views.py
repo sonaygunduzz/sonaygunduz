@@ -24,9 +24,7 @@ from vehicle.models import Comment
 def index(request):
     category = Category.objects.all()
     current_user = request.user
-
     profile = UserProfile.objects.get(user_id=current_user.id)
-
     context = {'category': category,
                'profile': profile
                }

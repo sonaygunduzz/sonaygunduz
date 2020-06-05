@@ -47,7 +47,7 @@ def addtocart(request,id):
                 data.save()
         request.session['cart_items'] = ShopCart.objects.filter(user_id =current_user.id).count()
         messages.success(request, " Araç Başarı ile Sepete eklendi! ")
-        return HttpResponseRedirect(url)
+        return HttpResponseRedirect('/shopcart')
 
     else:
         if control == 1:
@@ -114,6 +114,9 @@ def reservationvehicle(request):
             data.city = form.cleaned_data['city']
             data.phone = form.cleaned_data['phone']
             data.user_id = current_user.id
+            data.kalkisyeri = form.cleaned_data['kalkisyeri']
+            data.varisyeri = form.cleaned_data['varisyeri']
+            data.date = form.cleaned_data['date']
             data.total = total
             data.ip = request.META.get('REMOTE_ADDR')
             reservationcode =get_random_string(5).upper()
@@ -127,6 +130,9 @@ def reservationvehicle(request):
                 detail.vehicle_id = rs.vehicle_id
                 detail.user_id = current_user.id
                 detail.quantity = rs.quantity
+                detail.varisyeri = form.cleaned_data['varisyeri']
+                detail.kalkisyeri = form.cleaned_data['kalkisyeri']
+                detail.date = form.cleaned_data['date']
 
                 vehicle = Vehicle.objects.get(id=rs.vehicle_id)
                 vehicle.amount -= rs.quantity
@@ -138,8 +144,9 @@ def reservationvehicle(request):
 
             ShopCart.objects.filter(user_id= current_user.id).delete()
             request.session['cart_items']=0
+            profile = UserProfile.objects.get(user_id=current_user.id)
             messages.success(request,"Your Reservation has been completed!")
-            return render(request, 'Reservation_Completed.html', {'reservationcode': reservationcode, 'category': category})
+            return render(request, 'user_profile.html', {'reservationcode': reservationcode, 'category': category, 'profile': profile})
         else:
             messages.warning(request, form.errors)
             return HttpResponseRedirect("/reservation/reservationvehicle")

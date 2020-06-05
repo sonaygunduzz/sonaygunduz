@@ -56,40 +56,33 @@
                             <label for="id_country"> Country: </label>
                             <input type="text" name="country" value="{{profile.country}}" class="input" maxlength="50">
                         </p>
+                    <div class="grid_6">
+                            <div class="banner_title">
+                                <h4 class="banner_title">Reservation Informations </h4>
+                            </div>
+                            <p>
+                             <label for="kalkisyeri">Kalkış Adresi: </label>
+                                <input type="text" name="kalkisyeri" id="kalkisyeri" class="input" maxlength="20">
+                            </p>
+                            <p>
+
+                             <label for="varisyeri">Varış Adresi: </label>
+                             <input type="text" name="varisyeri" id="varisyeri" class="input" maxlength="20">
+                             </p>
+                            <p>
+                                <label for="date">Tarih</label>
+                                <input type="date" name="date" id="date" class="input">
+                            </p>
+
+                            <p>
+                             <label for="total">Total: </label>
+                             <input type="text" name="total" id="total" class="input" readonly value="${{ total }}">
+                            </p>
 
 
-                </div>
-                <div class="grid_6">
-                    <div class="">
-                        <div class="banner_title">
-                            <h4 class="banner_title"> Payment Informations</h4>
-                        </div>
-                        <p>
-                            <label for="total">Total: </label>
-                            <input type="text" name="total" id="total" class="input" readonly value="${{ total }}">
-                        </p>
-
-                        <p>
-                            <label for="holder"> Credit Card Holder</label>
-                            <input type="text" name="holder" id="holder" class="input" value="">
-                        </p>
-                        <p>
-                            <label for="number"> Credit Card Number</label>
-                            <input type="text" name="number" id="number" class="input" value="">
-                        </p>
-                        <p>
-                            <label for="ecpdate"> Credit Card Exp Date/Year</label>
-                            <input type="text" name="ecpdate" id="ecpdate" class="input" placeholder="mm/yy">
-                       </p>
-
-                        <p>
-                            <label for="secnumber"> Security Number </label>
-                            <input type="text" name="secnumber" id="secnumber" class="input" value="">
-                        </p>
-
-                    </div>
-                    <div class="pull-right">
-                            <button type="submit" class="btn-small"> Complete Reservation: </button>
+                            <div class="pull-right">
+                                <button type="submit" class="btn-small"> Complete Reservation </button>
+                            </div>
                     </div>
                 </div>
                 </form>

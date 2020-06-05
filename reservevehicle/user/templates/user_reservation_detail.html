@@ -16,7 +16,7 @@
 			<div class="grid_3">
 				{% include "user_panel.html" %}
 			</div>
-			<div class="grid_9" style="margin-left: 170px; margin-top: -340px">
+			<div class="grid_9" style="margin-left: 170px;">
 				<div class="section-title">
 					<h3 class="title"> User Reservation List </h3>
 				</div>
@@ -28,7 +28,8 @@
 							<th class="text-left"style="padding: 20px" >Price</th>
 							<th class="text-left" style="padding: 20px">Quantity</th>
 							<th class="text-left" style="padding: 20px">Amount</th>
-							<th class="text-left" style="padding: 20px">Status</th>
+							<th class="text-left" style="padding: 20px">From</th>
+							<th class="text-left" style="padding: 20px">Destination</th>
 							<th class="text-left" style="padding: 20px">Date</th>
 
 						</tr>
@@ -40,10 +41,11 @@
 							</td>
 							<td class="text-left" style="padding: 20px">{{ item.vehicle.title }}</td>
 							<td class="text-left" style="padding: 20px">{{ item.price }}</td>
-							<td class="text-left" style="padding: 20px">{{item.quantity}}</td>
-							<td class="text-left" style="padding: 20px">{{item.amount}}</td>
-							<td class="text-left" style="padding: 20px">{{item.status}}</td>
-							<td class="text-left" style="padding: 20px">{{item.created_at}}</td>
+							<td class="text-left" style="padding: 20px">{{ item.quantity}}</td>
+							<td class="text-left" style="padding: 20px">{{ item.amount}}</td>
+							<td class="text-left" style="padding: 20px">{{ item.kalkisyeri}}</td>
+							<td class="text-left" style="padding: 20px">{{ item.varisyeri}}</td>
+							<td class="text-left" style="padding: 20px">{{ item.date}}</td>
 
 						</tr>
 					{% endfor %}

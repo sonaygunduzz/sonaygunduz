@@ -10,20 +10,28 @@
 
 {% block content %}
 
-<div class="content" style="background: white; padding-bottom: 1000px">
+<div class="content" style="background: white;padding-bottom: 1000px">
 	<div class="ic"> User Profile </div>
-		<div class="row">
-			<div class="grid_3">
+
+			<div class="grid_5">
 				{% include "user_panel.html" %}
 			</div>
-			<div class="grid_9">
+			<div class="grid_7" style="margin-left: 100px">
 				<div class="section-title">
-					<h3 class="title"> User Information </h3>
+					<h3 class="title"> User Information</h3>
 				</div>
 				<table style="border: 1px solid black">
+					{% if messages %}
+                        {% for message in messages %}
+                            <div style="color: darkred; font-size: medium">
+                                {{ message | safe}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
 					<thead>
 						<tr>
-							<a href="/user/update" class="btn-large">Update Profile</a>
+							<a href="/user/update" class="btn-large" style="margin-right: 10px">Update Profile</a>
+
 							<a href="/user/password" class="btn-large">Change Password </a>
 
 						</tr>
@@ -52,7 +60,7 @@
 				</table>
 
 			</div>
-		</div>
+
 </div>
 
 

@@ -19,7 +19,8 @@
 							</a>
 						</div>
 						<div class="grid_4" style="margin-left: 800px; margin-top: -350px">
-							<span  style="font-size: 20px"> <b> {{vehicle.detail }}| Fiyat : {{vehicle.price}} </b> </span>
+							<span  style="font-size: 20px"> <b> {{ vehicle.detail | safe }} </b> </span>
+							<span style="margin-left: 150px; font-size: 20px "><b> Fiyat : {{vehicle.price}} </b> </span>
 						</div>
 
 					{% endfor %}

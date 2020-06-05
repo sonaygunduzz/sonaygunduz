@@ -17,9 +17,9 @@
 						<li class="active">{{categorydata.title}}</li>
 					</ul>
 				</div>
-	<div class="container">
-		<div class="row">
-			<table cellpadding="5" width="1200">
+	<div class="container" style="margin-left: 10px">
+		<div class="row" style="text-align: center; margin-top: 50px">
+			<table cellpadding="10" width="1200">
 				<tr>
 					<th>Image</th>
 					<th>Vehicle</th>
@@ -28,7 +28,7 @@
 				</tr>
 				{% for rs in vehicles %}
 				<tr>
-				    <td><a href="/vehicle/{{rs.id}}/{{rs.slug}}"><img src="{{rs.image.url}}" style="" alt=""></a> </td>
+				    <td><a href="/vehicle/{{rs.id}}/{{rs.slug}}"><img src="{{rs.image.url}}" width="250" alt=""></a> </td>
 					<td><h4 class="vehicle-name"><a href="/vehicle/{{rs.id}}/{{rs.slug}}">{{rs.title}}</a></h4> </td>
 					<td><a href="/category/{{rs.category.id}}/{{rs.category.slug}}">{{rs.category}}</a> </td>
 					<td><h4> ${{rs.price}} </h4></td>
